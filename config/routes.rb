@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+=begin
   root 'home#index'
 
   post '/auth', to: 'auth#create'
@@ -24,5 +25,5 @@ Rails.application.routes.draw do
   get 'users/:user_id/books/:id/edit', to: 'books#edit'
   put 'users/:user_id/books/:id', to: 'books#update'
   delete 'users/:user_id/books/:id', to: 'books#destroy'
-
+=end
 end
