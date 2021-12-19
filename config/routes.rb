@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-=begin
   root 'home#index'
 
   post '/auth', to: 'auth#create'
@@ -13,11 +12,6 @@ Rails.application.routes.draw do
   put '/users/:id', to: 'users#update'
   delete '/users/:id', to: 'users#destroy'
 
-  post '/books', to: 'books#create'
-  get '/books', to: '/books#index'
-  get 'books/:id', to: 'books#show'
-  get 'books/new', to: '/books#new'
-
   post '/users/:user_id/books', to: 'books#create'
   get 'users/:user_id/books/new', to: 'books#new'
   get 'users/:user_id/books', to: 'books#index'
@@ -25,5 +19,4 @@ Rails.application.routes.draw do
   get 'users/:user_id/books/:id/edit', to: 'books#edit'
   put 'users/:user_id/books/:id', to: 'books#update'
   delete 'users/:user_id/books/:id', to: 'books#destroy'
-=end
 end
