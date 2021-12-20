@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.valid?
-      /session[:user_id] = @user.id/
-      redirect_to 'users/show'
+      session[:user_id] = @user.id
+      #redirect_to 'users/show' #redirect to the right path
     else
       redirect_to users_new_path, alert: @user.errors.full_messages.join
     end
