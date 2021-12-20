@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :books, dependent:  :destroy
-  validates :name, allow_nil: false, allow_blank: false
-  validates :email, allow_nil: false, allow_blank: false, uniqness: true
-  validates :password, allow_nil: false, allow_blank: false
+  has_secure_password
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true
+  validates :password, presence: true
 end

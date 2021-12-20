@@ -1,0 +1,25 @@
+<h1>
+  Регистрация
+</h1>
+
+<%= form_for @user, remote: true do |f| %>
+  <div class="field">
+    <%= f.label 'Имя'%>
+    <%= f.text_field :name, type: :text%>
+  </div>
+  <div class="field">
+    <%= f.label 'Email'%>
+    <%= f.text_field :email, type: :email%>
+  </div>
+  <div class="field">
+    <%= f.label 'Пароль' %>
+    <%= f.password_field :password, type: :password %>
+  </div>
+  <div class="field">
+    <%= f.label 'Подтверждние пароля' %>
+    <%= f.password_field :password_confirmation, type: :password %>
+  </div>
+  <div class="field">
+    <%= f.submit 'Зарегестрироваться' %>
+  </div>
+<% end %>
