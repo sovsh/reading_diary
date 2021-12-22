@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :authorise_user, only: %i[create new index show edit update destroy]
+  before_action :set_book, only: %i[show]
 
   def create
     @book = @current_user.books.create(book_params)
@@ -13,16 +14,15 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    @books = Book.where(:user == @current_user)
   end
 
   def show
-    @book = Book.find_by_id(params[:id])
     not_found unless @book
   end
 
   def edit
-    not_found unless @book.user = @current_user
+    not_found unless @book.user == @current_user
   end
 
   def update
@@ -38,6 +38,10 @@ class BooksController < ApplicationController
   end
 
   private
+
+  def set_book
+    @book = Book.find_by_id(params[:id])
+  end
 
   def book_params
 
