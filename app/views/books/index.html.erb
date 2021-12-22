@@ -1,0 +1,9 @@
+<h1> Список книг </h1>
+
+<ul>
+  <%- @books.each do |book| %>
+    <li>
+      <%= link_to book.title, user_book_url(@current_user, book) %>
+    </li>
+  <% end %>
+</ul>
