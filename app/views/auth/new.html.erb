@@ -2,7 +2,7 @@
   Вход
 </h1>
 
-<%= form_for @user, remote: true do |f| %>
+<%= form_for @user, url: auth_url, remote: true do |f| %>
   <div class="field">
     <%= f.label 'Email'%>
     <%= f.text_field :email, type: :email%>
