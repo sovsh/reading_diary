@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :set_current_user
 
-  def authorise_user
+  def authorize_user
     redirect_to auth_path unless @current_user
   end
 

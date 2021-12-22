@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
-  before_action :authorise_user, only: %i[create new index show edit update destroy]
-  before_action :set_book, only: %i[show]
+  before_action :authorize_user, only: %i[create new index show edit update destroy]
+  before_action :set_book, only: %i[show edit update destroy]
+  #before_action :authorize_book, %i[show edit update destroy]
 
   def create
     @book = @current_user.books.create(book_params)
@@ -22,15 +23,15 @@ class BooksController < ApplicationController
   end
 
   def edit
-    not_found unless @book.user == @current_user
+
   end
 
   def update
     @book.update(book_params)
     unless @book.valid?
       return redirect_to edit_user_book_url(@book), alert: @book.errors.full_messages.join
-      redirect_to user_book_url(@current_user, @book)
     end
+    redirect_to user_book_url(@current_user, @book)
   end
 
   def destroy
@@ -45,5 +46,9 @@ class BooksController < ApplicationController
 
   def book_params
 
+  end
+
+  def authorize_book
+    #not_found unless @book.user == @current_user
   end
 end
