@@ -4,14 +4,17 @@ class BooksController < ApplicationController
   #before_action :authorize_book, %i[show edit update destroy]
 
   def create
+
     @book = @current_user.books.create(book_params)
+
     unless @book.valid?
       return redirect_to new_user_book_url, alert: @book.errors.full_messages.join
     end
+    redirect_to user_book_url(@current_user, @book)
   end
 
   def new
-    @book ||= Book.new
+    @book = Book.new
   end
 
   def index
@@ -27,7 +30,7 @@ class BooksController < ApplicationController
   end
 
   def update
-    @book.update(book_params)
+    @book.update(params)
     unless @book.valid?
       return redirect_to edit_user_book_url(@book), alert: @book.errors.full_messages.join
     end
@@ -45,7 +48,8 @@ class BooksController < ApplicationController
   end
 
   def book_params
-
+    params.require(:book)
+          .permit(:title, :author, :started, :finished, :review, :score, :picture_link)
   end
 
   def authorize_book

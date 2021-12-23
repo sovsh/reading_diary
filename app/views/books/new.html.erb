@@ -1,2 +1,17 @@
 <%= link_to 'Отмена', user_books_url(@current_user) %>
-<%= link_to 'Добавить книгу', user_book_url(@current_user, @book) %>
+
+<%= form_for @book, url: { :controller => "books", :action => "create" } do |f| %>
+  <div>
+    <%= f.label 'Название' %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label 'Автор' %>
+    <%= f.text_field :author %>
+  </div>
+  <div>
+    <%= f.label 'Дата начала чтения' %>
+    <%= f.date_field :started %>
+  </div>
+  <%= f.submit 'Добавить книгу' %>
+<% end %>
