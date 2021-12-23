@@ -15,7 +15,7 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.where(:user == @current_user)
+    @books = @current_user.books
   end
 
   def show

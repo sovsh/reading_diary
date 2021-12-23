@@ -1,4 +1,5 @@
 <%= link_to 'К списку книг', user_books_url(@current_user) %>
+<%= link_to 'Редактировать', edit_user_book_url(@current_user, @book) %>
 <h1><%= @book.title %></h1>
 <div>
   <%= @book.author %>
