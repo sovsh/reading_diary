@@ -1,2 +1,4 @@
 <%= link_to 'Отмена', user_url %>
 <%= link_to 'Сохранить изменения', user_url %>
+
+<%= link_to 'Удалить аккаунт', user_url(@current_user), method: :delete, data: {confirm: 'Вы уверены, что хотите удалить аккаунт?'}%>

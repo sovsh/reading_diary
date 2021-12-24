@@ -1,4 +1,4 @@
 <h1>Аккаунт</h1>
 <%= link_to 'К списку книг', user_books_url(@current_user) %>
 <%= link_to 'Редактировать', edit_user_url %>
-<%= link_to 'Выход', root_url %>
+<%= link_to 'Выход', auth_url(@current_user), method: :delete %>

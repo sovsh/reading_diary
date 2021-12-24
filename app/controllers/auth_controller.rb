@@ -1,7 +1,7 @@
 class AuthController < ApplicationController
   def create
     @user = User.find_by_email(user_params[:email])
-    if @user.password == params[:password]
+    if @user.authenticate(user_params[:password])
       session[:user_id] = @user.id
       redirect_to user_books_url(@user)
     else

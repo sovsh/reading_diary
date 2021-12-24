@@ -1,10 +1,9 @@
 class BooksController < ApplicationController
   before_action :authorize_user, only: %i[create new index show edit update destroy]
   before_action :set_book, only: %i[show edit update destroy]
-  #before_action :authorize_book, %i[show edit update destroy]
+  before_action :authorize_book, only: %i[show edit update destroy]
 
   def create
-
     @book = @current_user.books.create(book_params)
 
     unless @book.valid?
@@ -54,6 +53,6 @@ class BooksController < ApplicationController
   end
 
   def authorize_book
-    #not_found unless @book.user == @current_user
+    not_found unless @book.user == @current_user
   end
 end
