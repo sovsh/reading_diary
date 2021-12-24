@@ -1,1 +1,35 @@
 <%= link_to 'Отмена', user_books_url(@current_user) %>
+
+<%= form_for @book, url: { :controller => "books", :action => "update" } do |f| %>
+  <div>
+    <%= f.label 'Название' %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label 'Автор' %>
+    <%= f.text_field :author %>
+  </div>
+  <div>
+    <%= f.label 'Статус' %>
+    <%= f.select(:score, [['Читаю', 0],['Прочитана', 1],['Брошена', 2]]) %>
+  </div>
+  <div>
+    <%= f.label 'Дата начала чтения' %>
+    <%= f.date_field :started %>
+  </div>
+  <div>
+    <%= f.label 'Дата окончания чтения' %>
+    <%= f.date_field :finished %>
+  </div>
+  <div>
+    <%= f.label 'Оценка' %>
+    <%= f.select(:score, (0..10).to_a) %>
+  </div>
+  <div>
+    <%= f.label 'Отзыв' %>
+    <%= f.text_area :review %>
+  </div>
+  <%= f.submit 'Сохранить изменения' %>
+<% end %>
+
+<%= link_to 'Удалить книгу', user_book_url(@book), method: :delete, data: {confirm: 'Вы уверены, что хотите удалить книгу?'}%>

@@ -1,3 +1,9 @@
+<% flash.each do |_, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
 <%= link_to 'Отмена', user_books_url(@current_user) %>
 
 <%= form_for @book, url: { :controller => "books", :action => "create" } do |f| %>
@@ -10,8 +16,24 @@
     <%= f.text_field :author %>
   </div>
   <div>
+    <%= f.label 'Статус' %>
+    <%= f.select(:score, [['Читаю', 0],['Прочитана', 1],['Брошена', 2]]) %>
+  </div>
+  <div>
     <%= f.label 'Дата начала чтения' %>
     <%= f.date_field :started %>
+  </div>
+  <div>
+    <%= f.label 'Дата окончания чтения' %>
+    <%= f.date_field :finished %>
+  </div>
+  <div>
+    <%= f.label 'Оценка' %>
+    <%= f.select(:score, (0..10).to_a) %>
+  </div>
+  <div>
+    <%= f.label 'Отзыв' %>
+    <%= f.text_area :review %>
   </div>
   <%= f.submit 'Добавить книгу' %>
 <% end %>

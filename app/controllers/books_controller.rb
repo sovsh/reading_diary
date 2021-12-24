@@ -30,7 +30,7 @@ class BooksController < ApplicationController
   end
 
   def update
-    @book.update(params)
+    @book.update(book_params)
     unless @book.valid?
       return redirect_to edit_user_book_url(@book), alert: @book.errors.full_messages.join
     end
@@ -38,7 +38,8 @@ class BooksController < ApplicationController
   end
 
   def destroy
-
+    @book.destroy
+    redirect_to user_books_url(@current_user)
   end
 
   private
