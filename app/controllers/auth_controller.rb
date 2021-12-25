@@ -5,7 +5,7 @@ class AuthController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_books_url(@user)
     else
-      redirect_to auth_new_url, alert: @user.errors.full_messages.join
+      redirect_to new_auth_url, alert: @user.errors.full_messages.join
     end
   end
 

@@ -1,4 +1,31 @@
 <%= link_to 'Отмена', user_url %>
-<%= link_to 'Сохранить изменения', user_url %>
+
+<%= form_for @current_user, url: { :controller => "users", :action => "update" }, remote: true do |f| %>
+  <div class="field">
+    <p>Для изменения аккаунта введите текущий пароль</p>
+    <%= f.label 'Старый пароль' %>
+    <%= f.password_field :old_password, type: :password %>
+  </div>
+  <div class="field">
+    <%= f.label 'Имя'%>
+    <%= f.text_field :name, type: :text%>
+  </div>
+  <div class="field">
+    <%= f.label 'Email'%>
+    <%= f.text_field :email, type: :email%>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Новый пароль' %>
+    <%= f.password_field :password, type: :password %>
+  </div>
+  <div class="field">
+    <%= f.label 'Подтвердите новый пароль' %>
+    <%= f.password_field :password_confirmation, type: :password %>
+  </div>
+  <div class="field">
+    <%= f.submit 'Сохранить изменения' %>
+  </div>
+<% end %>
 
 <%= link_to 'Удалить аккаунт', user_url(@current_user), method: :delete, data: {confirm: 'Вы уверены, что хотите удалить аккаунт?'}%>

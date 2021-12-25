@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authorize_user, only: %i[index show edit update destroy]
+
   def create
     @user = User.create(user_params)
     if @user.valid?
@@ -22,7 +24,14 @@ class UsersController < ApplicationController
   end
 
   def update
-
+    unless @current_user.authenticate(user_old_password[:old_password])
+      return redirect_to edit_user_url(@current_user), alert: @current_user.errors.full_messages.join
+    end
+    @current_user.update(user_params)
+    unless @current_user.valid?
+      return redirect_to edit_user_url(@current_user), alert: @current_user.errors.full_messages.join
+    end
+    redirect_to user_url(@current_user)
   end
 
   def destroy
@@ -35,5 +44,10 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user)
          .permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def user_old_password
+    params.require(:user)
+          .permit(:old_password)
   end
 end
