@@ -1,6 +1,39 @@
 <%= link_to 'К списку книг', user_books_url(@current_user) %>
-<%= link_to 'Редактировать', edit_user_book_url(@current_user, @book) %>
+<%= link_to 'Редактировать книгу', edit_user_book_url(@current_user, @book) %>
 <h1><%= @book.title %></h1>
-<div>
-  <%= @book.author %>
-</div>
+<h2><%= @book.author %></h2>
+
+<h3>Начало чтения</h3>
+<%= @book.started %>
+
+<%- if @book.status!= 0 %>
+  <h3>Конец чтения</h3>
+  <%= @book.finished %>
+  <h3>Оценка</h3>
+  <%= @book.score %>
+  <h3>Отзыв</h3>
+  <%= @book.review %>
+<% end %>
+
+<h3>Заметки</h3>
+<%= link_to 'Добавить заметку', new_user_book_note_url(@current_user, @book) %>
+<% if !@notes.nil? %>
+  <%- @notes.each do |note| %>
+    <div>
+      <%= note.date %>
+    </div>
+    <div>
+      <%= note.text %>
+    </div>
+  <% end %>
+<% end %>
+
+<h3>Цитаты</h3>
+<%= link_to 'Добавить цитату', new_user_book_quote_url(@current_user, @book) %>
+<% if !@quotes.nil? %>
+  <%- @quotes.each do |quote| %>
+    <div>
+      <%= quote.text %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,11 @@
+<%= form_for @note, url: { :controller => "notes", :action => "create" } do |f| %>
+  <div>
+    <%= f.label 'Дата' %>
+    <%= f.date_field :date %>
+  </div>
+  <div>
+    <%= f.label 'Текст' %>
+    <%= f.text_area :text %>
+  </div>
+  <%= f.submit 'Добавить заметку' %>
+<% end %>

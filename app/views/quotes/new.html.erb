@@ -1,0 +1,7 @@
+<%= form_for @quote, url: { :controller => "quotes", :action => "create" } do |f| %>
+  <div>
+    <%= f.label 'Текст' %>
+    <%= f.text_area :text %>
+  </div>
+  <%= f.submit 'Добавить цитату' %>
+<% end %>
