@@ -1,5 +1,11 @@
 <%= link_to 'Отмена', user_url %>
 
+<% flash.each do |_, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
 <%= form_for @current_user, url: { :controller => "users", :action => "update" }, remote: true do |f| %>
   <div class="field">
     <p>Для изменения аккаунта введите текущий пароль</p>

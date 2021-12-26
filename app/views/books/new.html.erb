@@ -1,10 +1,10 @@
+<%= link_to 'Отмена', user_books_url(@current_user) %>
+
 <% flash.each do |_, msg| %>
   <div>
     <%= msg %>
   </div>
 <% end %>
-
-<%= link_to 'Отмена', user_books_url(@current_user) %>
 
 <%= form_for @book, url: { :controller => "books", :action => "create" } do |f| %>
   <div>

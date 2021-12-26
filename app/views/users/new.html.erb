@@ -2,6 +2,12 @@
   Регистрация
 </h1>
 
+<% flash.each do |_, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
 <%= form_for @user, remote: true do |f| %>
   <div class="field">
     <%= f.label 'Имя'%>

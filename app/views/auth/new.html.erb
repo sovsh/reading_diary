@@ -2,6 +2,12 @@
   Вход
 </h1>
 
+<% flash.each do |_, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
 <%= form_for @user, url: auth_index_url, remote: true do |f| %>
   <div class="field">
     <%= f.label 'Email'%>

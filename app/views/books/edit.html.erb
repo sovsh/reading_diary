@@ -1,5 +1,11 @@
 <%= link_to 'Отмена', user_books_url(@current_user) %>
 
+<% flash.each do |_, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
 <%= form_for @book, url: { :controller => "books", :action => "update" } do |f| %>
   <div>
     <%= f.label 'Название' %>
