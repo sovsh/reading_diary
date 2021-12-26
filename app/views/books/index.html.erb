@@ -1,7 +1,7 @@
 <h1>Привет, <%= @current_user.name %>!</h1>
 
-<%= link_to 'Аккаунт', user_url(@current_user) %>
 <%= link_to 'Добавить книгу',  new_user_book_url(@current_user) %>
+<%= link_to 'Аккаунт', user_url(@current_user) %>
 
 <h1> Список книг </h1>
 
